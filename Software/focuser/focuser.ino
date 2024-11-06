@@ -6,7 +6,7 @@
 // Uses Moonlite library from Hansastro: https://github.com/Hansastro/Focuser
 // Project GitHub: https://github.com/GeneralSyb/Step-moonlite-astrofocus
 
-float speed = 10000; // Maximum speed
+float maxSpeed = 10000;
 float acceleration = 500; // Acceleration, in this case the same for all speeds
 
 // Required libraries
@@ -65,7 +65,7 @@ void processCommand()
       break;
     case ML_GD:
       // Return the current motor speed
-      switch ((int)speed)
+      switch ((int)maxSpeed)
       {
         case 2000:
           SerialProtocol.setAnswer(2, (long)20);
@@ -121,18 +121,23 @@ void processCommand()
       {
         case 0x02:
           stepper.setMaxSpeed(10000);
+          maxSpeed = 10000;
           break;
         case 0x04:
           stepper.setMaxSpeed(7500);
+          maxSpeed = 7500;
           break;
         case 0x08:
           stepper.setMaxSpeed(5000);
+          maxSpeed = 5000;
           break;
         case 0x10:
           stepper.setMaxSpeed(3500);
+          maxSpeed = 3500;
           break;
         case 0x20:
           stepper.setMaxSpeed(2000);
+          maxSpeed = 2000;
           break;
         default:
           break;
@@ -206,7 +211,7 @@ void setup(){
   digitalWrite(MS3,HIGH);
 
   // Setting initial motor speed and acceleration
-  stepper.setSpeed(speed);
+  stepper.setMaxSpeed(maxSpeed); // Set the initial maximum speed
   stepper.setAcceleration(acceleration);
 
   // Setting the driver enable pin
@@ -220,7 +225,6 @@ void loop(){
   if (SerialProtocol.isNewCommandAvailable())
   {
     processCommand();
-    stepper.setSpeed(speed); // Update stepper max speed.
   }
   
   // Run the stepper, if it needs stepping
