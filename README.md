@@ -46,6 +46,8 @@ Try lowering the current setting. A focuser really doesn't need a whole lot of t
 Build at your own risk, I cannot guarantee that it will work for you. This form factor works for me, so it might not be ideal for your case.
 In this case a SeeedStudio XIAO RP2040 is used. It is soldered directly onto the PCB like an SMD component, so without pin headers. This is because connecting and disconneting might dislodge the microcontroller from normal pin headers. It does mean that it is basically to impossible to get it off again. It uses a 5.5mm barrel plug for motor power, the pitch between the two pins about 6.3 mm for this example, if you have a connector with 6.5 mm pitch you will have to change that in the PCB design yourself. This design is meant to use terminal blocks with a pitch of 2.54 mm, but JST-XH and maybe JST-PH also fit. There is also a capacitor you need, anything between 100uF and 1000uF should be good. It needs to be rated for the supply voltage you want to use. Either 5V or 25% higher than your supply voltage, whichever voltage is highest. The PCB allows two different pitch capacitors: 2.5 mm or 5 mm, the maximum diameter is 10 mm, the maximum height depends on the pin headers but 10 mm can be assumed.
 ![image](https://github.com/user-attachments/assets/46584444-f6fd-4f3d-be6b-1ff7a88f74a7)
+![image](https://github.com/user-attachments/assets/3aad311a-f688-4fb9-bef1-4d5c4ccda830)
+
 
 The KiCAD files can be found under Hardware/ChocoEQ (KiCAD 8.0.6 or later required). You don't need to import the libraries if you just want to change some simple things. In case you do need the libraries, you can find them under Hardware/Libraries.
 
